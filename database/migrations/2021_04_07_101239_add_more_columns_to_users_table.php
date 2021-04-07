@@ -14,8 +14,8 @@ class AddMoreColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('matric_no')->nullable();
-            $table->date('date_of_birth');
+            $table->string('matric_no')->nullable()->after('email');
+            $table->date('date_of_birth')->after('matric_no');
         });
     }
 
