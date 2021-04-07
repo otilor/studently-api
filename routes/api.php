@@ -23,6 +23,7 @@ Route::get('/', function () {
     return response()->json(['message' => 'Welcome to Studently API', 'status' => 200]);
 });
 
+
 Route::fallback(function () {
     return response()->json(['message' => 'Page not found.'])->setStatusCode(Response::HTTP_NOT_FOUND);
 });
