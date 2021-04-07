@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/', function () {
     return response()->json(['message' => 'Welcome to Studently API', 'status' => 200]);
+});
+
+Route::fallback(function () {
+    return response()->json(['message' => 'Page not found.'])->setStatusCode(Response::HTTP_NOT_FOUND);
 });
