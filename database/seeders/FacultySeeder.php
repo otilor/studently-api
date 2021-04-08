@@ -14,9 +14,14 @@ class FacultySeeder extends Seeder
      */
     public function run()
     {
-        $faculties = ['Faculty of Humanities','Faculty of Social and Management Science','Faculty of Science and Science Education'];
+        $faculties = ['Humanities','Social and Management Science','Science and Science Education'];
         foreach($faculties as $faculty){
-            Faculty::create(['name' => $faculty]);
+            $short_code = match ($faculty) {
+              'Humanities' => 'HUM',
+                'Social and Management Science' => 'SMS',
+                'Science and Science Education' => 'SSE',
+            };
+            Faculty::create(['name' => $faculty, 'short_code' => $short_code]);
         }
     }
 }
