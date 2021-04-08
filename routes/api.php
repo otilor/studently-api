@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return response()->json(['message' => 'Welcome to Studently API', 'status' => 200]);
-});
+Route::get('/', [StudentController::class, 'index']);
+
+Route::get('students', [StudentController::class, 'students'])->name('student');
 
 
 Route::fallback(function () {
