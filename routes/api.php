@@ -22,7 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/', [StudentController::class, 'index']);
 
-Route::get('students', [StudentController::class, 'students'])->name('student');
+Route::get('students', [StudentController::class, 'students'])->name('students');
+Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
 
 
 Route::fallback(function () {

@@ -17,4 +17,9 @@ class StudentController extends Controller
         $student = User::with('department')->get();
         return response()->json($student);
     }
+    public function student(Request $request)
+    {
+        $student = User::with('department')->findOrFail($request->id);
+        return response()->json($student);
+    }
 }
