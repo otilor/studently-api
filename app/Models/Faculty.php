@@ -9,8 +9,10 @@ class Faculty extends Model
 {
     use HasFactory;
 
-    protected $gaurded = [];
-    
+    protected $fillable = [
+        'name'
+    ];
+
     public function students()
     {
         return $this->hasMany(User::class);

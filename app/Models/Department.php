@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
-    protected $gaurded = [];
+    protected $fillable = [
+        'name',
+        'faculty_id'
+    ];
 
     public function student()
     {
