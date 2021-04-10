@@ -15,6 +15,7 @@ class AddDepartmentIdToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('department_id')->after('date_of_birth');
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

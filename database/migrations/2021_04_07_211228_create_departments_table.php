@@ -16,7 +16,8 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('faculty_id')->nullable();
+            $table->unsignedBigInteger('faculty_id');
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->timestamps();
         });
     }
