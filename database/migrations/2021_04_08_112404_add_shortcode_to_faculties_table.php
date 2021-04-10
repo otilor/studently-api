@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMoreColumnsToUsersTable extends Migration
+class AddShortcodeToFacultiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddMoreColumnsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('matric_no')->nullable()->after('email');
-            $table->date('date_of_birth')->after('matric_no');
-            
+        Schema::table('faculties', function (Blueprint $table) {
+            $table->string('short_code',3)->after('name');
         });
     }
 
@@ -27,7 +25,7 @@ class AddMoreColumnsToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('faculties', function (Blueprint $table) {
             //
         });
     }

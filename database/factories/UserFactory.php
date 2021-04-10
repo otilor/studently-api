@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -22,10 +23,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $department = Department::pluck('id')->toArray();
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'matric_no' => $this->faker->regexify('/AUL\/(SCI|HUM|SMS)\/([0-9]{2})\/([0-9]{5})/'),
+            'date_of_birth' => $this->faker->dateTimeThisCentury('now'),
+            'department_id' => $this->faker->randomElement($department),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
