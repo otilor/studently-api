@@ -25,8 +25,8 @@ Route::get('/', [StudentController::class, 'index']);
 
 Route::get('students', [StudentController::class, 'students'])->name('students');
 Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
-// Return all facuties
-Route::get('faculty', [StudentController::class ,'Faculty'])->name('faculty');
+// Return all facuties detail
+Route::get('faculty/{id}', [StudentController::class ,'Faculty'])->name('faculty');
 
 
 Route::fallback(function () {

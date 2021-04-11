@@ -24,9 +24,9 @@ class StudentController extends Controller
         $student = User::with('department')->firstWhere('matric_no','like', $request->id);
         return response()->json(['student' => $student])->setStatusCode(Response::HTTP_OK);
     }
-    public function faculty()
+    public function faculty(Request $id)
     {
-        $faculty = Faculty::all();
-        return response()->json($faculty);
+        $faculties = Faculty::with('department')->findOrFail($id->id);
+        return response()->json($faculties);
     }
 }
