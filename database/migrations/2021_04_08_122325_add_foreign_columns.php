@@ -13,13 +13,7 @@ class AddForeignColumns extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table){
-            $table->unsignedBigInteger('department_id');
-        });
-
-        Schema::table('departments', function (Blueprint $table){
-            $table->unsignedBigInteger('faculty_id');
-        });
+        //
     }
 
     /**
