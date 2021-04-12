@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\StudentController;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,8 @@ Route::get('/', [StudentController::class, 'index']);
 
 Route::get('students', [StudentController::class, 'students'])->name('students');
 Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
+// Return all facuties detail
+Route::get('faculty/{id}', [StudentController::class ,'Faculty'])->name('faculty');
 
 
 Route::fallback(function () {
