@@ -32,3 +32,12 @@ Route::get('faculty/{id}', [StudentController::class ,'Faculty'])->name('faculty
 Route::fallback(function () {
     return response()->json(['message' => 'Page not found.'])->setStatusCode(Response::HTTP_NOT_FOUND);
 });
+
+
+// Auth endpoints
+
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+});
