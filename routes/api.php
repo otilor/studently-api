@@ -21,12 +21,9 @@ Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::get('/', [StudentController::class, 'index']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+
     Route::get('students', [StudentController::class, 'students'])->name('students');
     Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
 // Return all facuties detail
