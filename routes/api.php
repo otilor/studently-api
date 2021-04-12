@@ -17,12 +17,12 @@ use Symfony\Component\HttpFoundation\Response;
 |
 */
 
-Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
 
 Route::get('/', [StudentController::class, 'index']);
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
     Route::get('students', [StudentController::class, 'students'])->name('students');
     Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
