@@ -37,4 +37,13 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Successfully logged out!'])->setStatusCode(Response::HTTP_OK);
     }
+
+    protected function createNewToken($token){
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
+    }
 }
