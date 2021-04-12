@@ -17,17 +17,18 @@ use Symfony\Component\HttpFoundation\Response;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
 
 Route::get('/', [StudentController::class, 'index']);
 
-Route::get('students', [StudentController::class, 'students'])->name('students');
-Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
-// Return all facuties detail
-Route::get('faculty/{id}', [StudentController::class ,'Faculty'])->name('faculty');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
+    Route::get('students', [StudentController::class, 'students'])->name('students');
+    Route::get('student/{id}', [StudentController::class, 'student'])->name('student');
+// Return all facuties detail
+    Route::get('faculty/{id}', [StudentController::class ,'Faculty'])->name('faculty');
+});
 
 Route::fallback(function () {
     return response()->json(['message' => 'Page not found.'])->setStatusCode(Response::HTTP_NOT_FOUND);
